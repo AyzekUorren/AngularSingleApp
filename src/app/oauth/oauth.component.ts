@@ -28,7 +28,7 @@ export class OauthComponent implements OnInit {
   console.log(data);
   this.oauthData = data;
   if ( data.hasOwnProperty('url') ) {
-  OauthComponent.OpenConnectPage(data.url);
+  OauthComponent.OpenConnectPage((data as any).url);
   }
 });
 }
