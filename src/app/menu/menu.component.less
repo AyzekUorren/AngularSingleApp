@@ -1,0 +1,104 @@
+/* app css stylesheet on less*/
+@b-color-menu: #373737;
+@b-color-search: #6E6E6E;
+@search-text-color: #f1f1f1;
+
+
+.menu{
+  margin: 25px 0;
+  list-style: none;
+  border-bottom: 1px solid @b-color-search;
+  box-sizing: border-box;
+  & > li{
+    opacity: 0.5;
+    display: inline-block;
+    margin-bottom: -1px;
+    &.highlight{
+      & > a{
+        border-top-left-radius: .25rem;
+        border-top-right-radius: .25rem;
+        border: 1px solid @b-color-search;
+        border-bottom-color: transparent;
+      }
+      background-color: white;
+    }
+    & ~ li{
+      margin-left: 10px;
+    }
+    & > a{
+      display: inline-block;
+      &:hover{
+        background-color: @search-text-color;
+      }
+      & > img{
+        max-height: 50px;
+        max-width: 50px;
+        padding: 10px;
+      }
+    }
+  }
+}
+.highlight{
+  opacity: 1 !important;
+  border-bottom: transparent;
+}
+
+div.smart-device{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  background: @search-text-color;
+  & > .menu{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    width: 100%;
+    border: none;
+    & > li {
+      &:hover{
+        background-color: @search-text-color;
+      }
+      &.highlight{
+        background-color: @search-text-color;
+        border: .1em solid @b-color-menu;
+      }
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+      width: 20%;
+      & ~ li{
+        margin: 0;
+      }
+      & > a{
+        border: none;
+        & > img{
+
+        }
+      }
+      }
+  }
+}
+
+.search{
+  background-color: @b-color-menu;
+  min-height: 60px;
+  padding: 0 15px;
+
+  input[type=text], select{
+    float: right;
+    color: @search-text-color;
+    margin: 8px 0;
+    border: 1px solid @b-color-search;
+    border-radius: 15px;
+    background: @b-color-search url(../../assets/img/ico/search-icon.png) no-repeat 7px 7px;
+    background-size: 25px;
+    box-sizing: border-box;
+    padding: 10px 30px 10px 40px;
+  }
+  img{
+    max-height: 25px;
+    position: absolute;
+    display: none;
+    cursor: not-allowed;
+  }
+}
