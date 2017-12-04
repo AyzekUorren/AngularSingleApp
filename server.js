@@ -1,12 +1,9 @@
 const express = require('express');
 const app = express();
-const path = require('path');
 const bodyParser = require('body-parser');
-const publicDir = '/app';
 const port = 8010;
 const queryString = require( "querystring" );
 const Flickr = require('flickr-sdk');
-//const cookies = require('cookie-parser');
 const Cors = require('cors');
 
 let ConsumerKeys = {
@@ -26,28 +23,16 @@ let AccessData = {};
 
 let tempoToken;
 
-
-
-/*app.use(express.static(path.resolve(__dirname + publicDir)));*/
-//app.use(cookies());
-app.use(Cors({credentials: true, origin: true}));
-
-
-/*app.get('/',function (req,res) {
-  res.sendFile(path.join(__dirname + publicDir + '/index.html'));
-});*/
-
-app.use(bodyParser.urlencoded({extended: true}));
-
-//app.post('/OAuth',require(path.resolve(__dirname+publicDir+'/controllers_services/OAuth')));
 let oauth = new Flickr.OAuth(
   process.env.FLICKR_CONSUMER_KEY = ConsumerKeys.consumerKey,
   process.env.FLICKR_CONSUMER_SECRET = ConsumerKeys.ConsumerSecret
 );
 
+app.use(Cors({credentials: true, origin: true}));
+app.use(bodyParser.urlencoded({extended: true}));
+
 app.get('/OAuth/request', function (req, res) {
   let data = oauth.request(urlOAuth).then(function (res) {
-    //console.log('yay!', res);
     let url = oauth.authorizeUrl(res.body.oauth_token, 'write');
     url += '&oauth_callback='+urlOAuth;
     let oauth_token = res.body.oauth_token;
@@ -59,7 +44,6 @@ app.get('/OAuth/request', function (req, res) {
   });
 
   data.then(function(result){
-    //console.log('Its result: ', result);
     tempoToken = result;
     console.log('First Step: \n',tempoToken);
     res.status(200).send(result);
@@ -71,7 +55,6 @@ app.get('/OAuth/request', function (req, res) {
 app.get('/OAuth/success', function (req, res) {
   let qeuryParams = queryString.parse(req._parsedUrl.query);
   let user = {};
-  //console.log(qeuryParams);
   oauth.verify(qeuryParams.oauth_token,qeuryParams.oauth_verifier, tempoToken["oauth_token_secret"]).then(function (res) {
     console.log('Second Step:');
     user['oauth_token'] = res.body.oauth_token;
@@ -83,8 +66,6 @@ app.get('/OAuth/success', function (req, res) {
   }).catch(function (err) {
     console.log('bonk', err);
   });
-
-  //Redirect to Page Authorization
   res.redirect(urlRedirect);
 });
 
@@ -93,8 +74,6 @@ let ApiFlickr;
 
 //GetUserInfo
 app.get(urlGetUserInfo, function (req, res) {
-  //let userCookies = req.cookies['connect.sid'];
-  //console.log(userCookies);
   if(AccessData.hasOwnProperty(0)) {
     if (ApiFlickr === undefined)
       ApiFlickr = new Flickr(Flickr.OAuth.createPlugin(
@@ -123,7 +102,6 @@ app.get(urlGetUserInfo, function (req, res) {
 
 //Get PhotoSets
 app.get(urlGetPhotoSets, function (req, res) {
-  //let userCookies = req.cookies['connect.sid'];
   if(AccessData.hasOwnProperty(0)) {
     if (ApiFlickr === undefined)
       ApiFlickr = new Flickr(Flickr.OAuth.createPlugin(
@@ -133,9 +111,9 @@ app.get(urlGetPhotoSets, function (req, res) {
         AccessData[0].oauth_token_secret));
     let param = {
       user_id: AccessData[0].id,
-      page: 2,
-      per_page: 2,
-      pages:2,
+      page: null,
+      per_page: null,
+      pages:null,
       format: 'json',
       nojsoncallback: '1'
     };
