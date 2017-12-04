@@ -1,6 +1,7 @@
 .container {
   position: relative;
   width: 250px;
+  height: 400px;
   text-align: center;
   margin-left: auto;
   margin-right: auto;
@@ -11,6 +12,8 @@
   font-variant-caps: all-small-caps;
   font-family: sans-serif;
   color: lightblue;
+  height: 80px;
+  line-height: 40px;
 }
 .container:hover .overlay {
   opacity: 1;
