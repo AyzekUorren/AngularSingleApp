@@ -1,3 +1,8 @@
+<div class="buttonContainer" [ngClass]="{'smart-device': Width  <= 600 }">
+  <button class="buttonCurrent" (click)="getPhotoSets()">Get User PhotoSets</button>
+</div>
+
+<img src="{{photoSets}}" alt="">
 <p>
-  images works!
+  {{photoSets}}
 </p>

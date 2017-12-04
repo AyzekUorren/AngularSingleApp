@@ -17,6 +17,10 @@ let ConsumerKeys = {
 const urlOAuth = 'http://localhost:8010/OAuth/success';
 const urlRedirect = 'http://localhost:4200';
 
+//Get
+const urlGetUserInfo = '/OAuth/userInfo';
+const urlGetPhotoSets = '/User/PhotoSets';
+
 //All authorized users
 let AccessData = {};
 
@@ -86,7 +90,9 @@ app.get('/OAuth/success', function (req, res) {
 
 let ApiFlickr;
 
-app.get('/t3', function (req, res) {
+
+//GetUserInfo
+app.get(urlGetUserInfo, function (req, res) {
   //let userCookies = req.cookies['connect.sid'];
   //console.log(userCookies);
   if(AccessData.hasOwnProperty(0)) {
@@ -98,6 +104,8 @@ app.get('/t3', function (req, res) {
         AccessData[0].oauth_token_secret));
     let result = ApiFlickr.test.login().then(function (res) {
       console.log('yay!', res.body);
+      AccessData[0]['id'] = JSON.stringify(res.body.user.id);
+      console.log(AccessData[0]);
       return res.body;
     }).catch(function (err) {
       console.error('bonk', err);
@@ -112,7 +120,9 @@ app.get('/t3', function (req, res) {
   }
 });
 
-app.get('/t4', function (req, res) {
+
+//Get PhotoSets
+app.get(urlGetPhotoSets, function (req, res) {
   //let userCookies = req.cookies['connect.sid'];
   if(AccessData.hasOwnProperty(0)) {
     if (ApiFlickr === undefined)
@@ -122,7 +132,7 @@ app.get('/t4', function (req, res) {
         AccessData[0].oauth_token,
         AccessData[0].oauth_token_secret));
     let param = {
-      user_id: '157560754@N05',
+      user_id: AccessData[0].id,
       page: 1,
       per_page: 1,
       format: 'json',
