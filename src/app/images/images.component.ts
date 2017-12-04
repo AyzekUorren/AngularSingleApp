@@ -16,9 +16,15 @@ export class ImagesComponent implements OnInit {
   getPhotoSets() {
     this.imgagesService.getPhotoSets().subscribe(data => {
       this.photoSets = (data as any).photosets.photoset.map(function (el) {
-        console.log(el.farm);
-        const size = 'b';
-        return 'https://farm' + el.farm + '.staticflickr.com/' + el.server + '/' + el.primary + '_' + el.secret + '_' + size + '.jpg';
+        const size = 'h';
+        const url = 'https://farm' + el.farm + '.staticflickr.com/' + el.server + '/' + el.primary + '_' + el.secret;
+        const id = el.id;
+        const title = el.title._content;
+        const description = el.description._content;
+        const value = {url, id, title, description};
+        console.log(el);
+        console.log(value);
+        return value;
       });
     });
   }

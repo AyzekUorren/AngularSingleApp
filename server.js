@@ -133,12 +133,13 @@ app.get(urlGetPhotoSets, function (req, res) {
         AccessData[0].oauth_token_secret));
     let param = {
       user_id: AccessData[0].id,
-      page: 1,
-      per_page: 1,
+      page: 2,
+      per_page: 2,
+      pages:2,
       format: 'json',
       nojsoncallback: '1'
     };
-    let result = ApiFlickr.photosets.getList(param.user_id, param.per_page, param.page, param.nojsoncallback, param.format).then(function (res) {
+    let result = ApiFlickr.photosets.getList(param.user_id, param.nojsoncallback, param.format).then(function (res) {
       console.log('yay!', res.body);
       return res.body;
     }).catch(function (err) {

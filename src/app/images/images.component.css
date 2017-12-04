@@ -1,0 +1,82 @@
+.container {
+  position: relative;
+  width: 250px;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  float: left;
+}
+.container > .photoSets-title {
+  font-size: 36px;
+  font-variant-caps: all-small-caps;
+  font-family: sans-serif;
+  color: lightblue;
+}
+.container:hover .overlay {
+  opacity: 1;
+}
+.container > .image {
+  display: block;
+  width: auto;
+  height: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.container > .overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: #6E6E6E;
+  border: 2px solid lightblue;
+  border-radius: 10px;
+}
+.container > .overlay > div {
+  color: white;
+  font-size: 20px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+}
+.buttonContainer {
+  text-align: center;
+  width: 100%;
+}
+button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 10px;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+button.buttonCurrent {
+  background-color: white;
+  color: black;
+  border: 2px solid #2a5abc;
+}
+button.buttonCurrent:hover {
+  background-color: #2a5abc;
+  color: white;
+}
+.smart-device > button {
+  font-size: 16px;
+  margin: 2px 5px;
+  padding: 21px 10px;
+  background-color: #6E6E6E;
+  color: white;
+  border: 2px solid black;
+}
