@@ -1,0 +1,48 @@
+.buttonContainer {
+  text-align: center;
+  width: 100%;
+}
+button {
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 10px;
+  -webkit-transition-duration: 0.4s;
+  /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+button.buttonCurrent {
+  background-color: white;
+  color: black;
+  border: 2px solid #2a5abc;
+}
+button.buttonCurrent:hover {
+  background-color: #2a5abc;
+  color: white;
+}
+.smart-device > button {
+  font-size: 16px;
+  margin: 2px 5px;
+  padding: 21px 10px;
+  background-color: #6E6E6E;
+  color: white;
+  border: 2px solid black;
+}
+.salutation {
+  border: 2px solid #2a5abc;
+  text-align: center;
+  padding: 15px 15px;
+  margin: 20px 20px;
+  background-color: white;
+  color: black;
+  transition-duration: 0.4s;
+}
+.salutation:hover {
+  background-color: #373737;
+  color: white;
+}

@@ -6,7 +6,7 @@ const publicDir = '/app';
 const port = 8010;
 const queryString = require( "querystring" );
 const Flickr = require('flickr-sdk');
-const cookies = require('cookie-parser');
+//const cookies = require('cookie-parser');
 const Cors = require('cors');
 
 let ConsumerKeys = {
@@ -25,7 +25,7 @@ let tempoToken;
 
 
 /*app.use(express.static(path.resolve(__dirname + publicDir)));*/
-app.use(cookies());
+//app.use(cookies());
 app.use(Cors({credentials: true, origin: true}));
 
 
@@ -73,7 +73,7 @@ app.get('/OAuth/success', function (req, res) {
     user['oauth_token'] = res.body.oauth_token;
     user['oauth_token_secret'] = res.body.oauth_token_secret;
     user['status'] = true;
-    AccessData[req.cookies['connect.sid']] = user;
+    AccessData[0] = user;
     console.log('Authorized done!');
     console.log(AccessData);
   }).catch(function (err) {
@@ -87,14 +87,15 @@ app.get('/OAuth/success', function (req, res) {
 let ApiFlickr;
 
 app.get('/t3', function (req, res) {
-  let userCookies = req.cookies['connect.sid'];
-  if(AccessData.hasOwnProperty(userCookies)) {
+  //let userCookies = req.cookies['connect.sid'];
+  //console.log(userCookies);
+  if(AccessData.hasOwnProperty(0)) {
     if (ApiFlickr === undefined)
       ApiFlickr = new Flickr(Flickr.OAuth.createPlugin(
         ConsumerKeys.consumerKey,
         ConsumerKeys.ConsumerSecret,
-        AccessData[userCookies].oauth_token,
-        AccessData[userCookies].oauth_token_secret));
+        AccessData[0].oauth_token,
+        AccessData[0].oauth_token_secret));
     let result = ApiFlickr.test.login().then(function (res) {
       console.log('yay!', res.body);
       return res.body;
@@ -112,14 +113,14 @@ app.get('/t3', function (req, res) {
 });
 
 app.get('/t4', function (req, res) {
-  let userCookies = req.cookies['connect.sid'];
-  if(AccessData.hasOwnProperty(userCookies)) {
+  //let userCookies = req.cookies['connect.sid'];
+  if(AccessData.hasOwnProperty(0)) {
     if (ApiFlickr === undefined)
       ApiFlickr = new Flickr(Flickr.OAuth.createPlugin(
         ConsumerKeys.consumerKey,
         ConsumerKeys.ConsumerSecret,
-        AccessData.oauth_token,
-        AccessData.oauth_token_secret));
+        AccessData[0].oauth_token,
+        AccessData[0].oauth_token_secret));
     let param = {
       user_id: '157560754@N05',
       page: 1,

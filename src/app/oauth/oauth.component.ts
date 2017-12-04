@@ -9,6 +9,8 @@ import {OauthService} from './oauth.service';
 })
 export class OauthComponent implements OnInit {
   oauthData: {};
+  Width: number;
+  userInfo: any;
 
   private static OpenConnectPage(url: any) {
     if (url !== undefined) {
@@ -32,8 +34,15 @@ export class OauthComponent implements OnInit {
   }
 });
 }
+  getUserinfo() {
+    this.oauthService.getUserInfo().subscribe( data => {
+     this.userInfo = (data as any).user;
+     console.log((data as any).user);
+    });
+  }
 
   ngOnInit() {
+    this.Width = window.innerWidth;
   }
 
 }
