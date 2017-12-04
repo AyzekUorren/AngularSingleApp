@@ -2,14 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 // Import HttpClientModule from @angular/common/http
 import {HttpClientModule} from '@angular/common/http';
-
 import { AppComponent } from './app.component';
-
-import { AlertModule } from 'ngx-bootstrap';
 import { MenuComponent } from './menu/menu.component';
 import { OauthComponent } from './oauth/oauth.component';
-
-import { TabsModule } from 'ngx-bootstrap/tabs';
 import { RouterModule } from '@angular/router';
 import { ImagesComponent } from './images/images.component';
 
@@ -24,8 +19,6 @@ import { ImagesComponent } from './images/images.component';
   imports: [
     BrowserModule,
     HttpClientModule,
-    AlertModule.forRoot(),
-    TabsModule.forRoot(),
     RouterModule.forRoot([
       {
         path: 'images',
