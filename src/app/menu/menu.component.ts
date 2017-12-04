@@ -41,8 +41,6 @@ export class MenuComponent implements OnInit {
   @HostListener('window:onload')
   onResize(event) {
     this.Width = event.target.innerWidth;
-   // console.log( event.target.innerWidth);
-    //console.log(typeof this.Width);
   }
   ngOnInit() {
     this.Width = window.innerWidth;
