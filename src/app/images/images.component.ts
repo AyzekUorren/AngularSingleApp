@@ -10,8 +10,11 @@ import {ImagesService} from './images.service';
 })
 export class ImagesComponent implements OnInit {
   photoSets: any;
+  private Width: number;
 
-  constructor(private imgagesService: ImagesService) { }
+  constructor(private imgagesService: ImagesService) {
+
+  }
 
   getPhotoSets() {
     this.imgagesService.getPhotoSets().subscribe(data => {
@@ -30,6 +33,7 @@ export class ImagesComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.Width = window.innerWidth;
   }
 
 }

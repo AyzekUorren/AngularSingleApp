@@ -77,12 +77,44 @@ button {
 }
 
 .smart-device{
-  & > button{
+  & > .buttonContainer > .buttonCurrent{
     font-size: 16px;
     margin: 2px 5px;
     padding: 21px 10px;
     background-color: #6E6E6E;
     color: white;
     border: 2px solid black;
+  }
+
+  & > div > .container{
+    & > .photoSets-title{
+      margin: 0;
+      width: 50%;
+      float: right;
+      height: 50%;
+    }
+    & > .image{
+      max-width: 50%;
+    }
+    float: left;
+    width: 100%;
+    & > .overlay{
+      height: 50%;
+      width: 50%;
+      left: 250px;
+      border: 0;
+      background-color: transparent;
+      opacity: 1;
+      text-align: right;
+      & > .description{
+        top: 75%;
+        left: 38%;
+        color: black;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+      }
+    }
   }
 }

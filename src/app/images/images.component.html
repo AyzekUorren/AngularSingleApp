@@ -1,12 +1,14 @@
-<div class="buttonContainer" [ngClass]="{'smart-device': Width  <= 600 }">
-  <button class="buttonCurrent" (click)="getPhotoSets()">Get User PhotoSets</button>
-</div>
-  <div *ngFor="let photo of photoSets" >
-    <div class="container">
-    <h1 class="photoSets-title">Title: {{photo?.title}}</h1>
-    <img src="{{photo?.url + '_b.jpg' || undefined}}" class="image">
-      <div class="overlay">
-        <div>{{photo?.description}}</div>
-      </div>
-   </div>
+<div [ngClass]="{'smart-device': Width  <= 600 }">
+  <div class="buttonContainer">
+    <button class="buttonCurrent" (click)="getPhotoSets()">Get User PhotoSets</button>
+  </div>
+    <div *ngFor="let photo of photoSets" >
+      <div class="container">
+        <h1 class="photoSets-title">Title: {{photo?.title}}</h1>
+        <img src="{{photo?.url + '_b.jpg' || undefined}}" class="image">
+        <div class="overlay">
+          <div class="description">{{photo?.description}}</div>
+        </div>
+    </div>
+  </div>
 </div>

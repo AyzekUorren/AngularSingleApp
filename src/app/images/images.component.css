@@ -75,11 +75,42 @@ button.buttonCurrent:hover {
   background-color: #2a5abc;
   color: white;
 }
-.smart-device > button {
+.smart-device > .buttonContainer > .buttonCurrent {
   font-size: 16px;
   margin: 2px 5px;
   padding: 21px 10px;
   background-color: #6E6E6E;
   color: white;
   border: 2px solid black;
+}
+.smart-device > div > .container {
+  float: left;
+  width: 100%;
+}
+.smart-device > div > .container > .photoSets-title {
+  margin: 0;
+  width: 50%;
+  float: right;
+  height: 50%;
+}
+.smart-device > div > .container > .image {
+  max-width: 50%;
+}
+.smart-device > div > .container > .overlay {
+  height: 50%;
+  width: 50%;
+  left: 250px;
+  border: 0;
+  background-color: transparent;
+  opacity: 1;
+  text-align: right;
+}
+.smart-device > div > .container > .overlay > .description {
+  top: 75%;
+  left: 38%;
+  color: black;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
 }
