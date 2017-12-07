@@ -1,8 +1,8 @@
-<div class="search">
-  <input type="text">
-  <img src="../../assets/img/ico/filled-cancel.png" style="display: none;">
-</div>
 <div [ngClass]="{'smart-device': Width <= 600}">
+  <div class="search">
+    <input type="text">
+    <img src="../../assets/img/ico/filled-cancel.png" style="display: none;">
+  </div>
   <ul class="menu">
     <li [ngClass]='{"highlight": route === "/images"}'><a routerLink="/images"><img src="../../assets/img/ico/img-icon.png" alt="images"></a></li>
     <li [ngClass]='{"highlight": route === "2"}'><a href="#"><img src="../../assets/img/ico/window-icon.png" alt="images"></a></li>
