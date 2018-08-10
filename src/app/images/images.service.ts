@@ -6,6 +6,6 @@ export class ImagesService {
   constructor(private http: HttpClient) { }
 
   getPhotoSets() {
-    return this.http.get('http://localhost:8010/User/PhotoSets');
+    return this.http.get('http://localhost:8010/api/User/PhotoSets');
   }
 }

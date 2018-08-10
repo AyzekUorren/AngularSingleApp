@@ -3,15 +3,18 @@ import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class OauthService {
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {
+  }
   getUserInfo() {
-    return this.http.get('http://localhost:8010/OAuth/userInfo');
+    return this.http.get( this.getAPIurl() + '/OAuth/userInfo');
   }
   getOauthUrl() {
-    return this.http.get('http://localhost:8010/OAuth/request');
+    return this.http.get( this.getAPIurl() + '/OAuth/request');
   }
   getPhotoSets() {
-    return this.http.get('http://localhost:8010/User/PhotoSets');
+    return this.http.get( this.getAPIurl() + '/User/PhotoSets');
+  }
+  getAPIurl(){
+    return 'http://localhost:8010/api';
   }
 }

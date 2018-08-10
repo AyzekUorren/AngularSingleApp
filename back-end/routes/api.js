@@ -1,37 +1,26 @@
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const port = 8010;
-const queryString = require( "querystring" );
 const Flickr = require('flickr-sdk');
-const Cors = require('cors');
-
-let ConsumerKeys = {
-  consumerKey : '78dbd975f7f3a386eaed70f4a83e76e9',
-  ConsumerSecret: 'ec4e6f1ad765cd7b'
-};
-
-const urlOAuth = 'http://localhost:8010/OAuth/success';
+const queryString = require( "querystring" );
+const urlOAuth = 'http://localhost:8010/api/OAuth/success';
 const urlRedirect = 'http://localhost:4200';
-
-//Get
-const urlGetUserInfo = '/OAuth/userInfo';
-const urlGetPhotoSets = '/User/PhotoSets';
+const express = require ('express');
+const router = express.Router();
 
 //All authorized users
 let AccessData = {};
 
 let tempoToken;
 
+//Get
+const urlGetUserInfo = '/OAuth/userInfo';
+const urlGetPhotoSets = '/User/PhotoSets';
+
+//app.post('/OAuth',require(path.resolve(__dirname+publicDir+'/controllers_services/OAuth')));
 let oauth = new Flickr.OAuth(
-  process.env.FLICKR_CONSUMER_KEY = ConsumerKeys.consumerKey,
-  process.env.FLICKR_CONSUMER_SECRET = ConsumerKeys.ConsumerSecret
+    process.env.FLICKR_CONSUMER_KEY,
+    process.env.FLICKR_CONSUMER_SECRET
 );
 
-app.use(Cors({credentials: true, origin: true}));
-app.use(bodyParser.urlencoded({extended: true}));
-
-app.get('/OAuth/request', function (req, res) {
+router.get('/OAuth/request', function (req, res) {
   let data = oauth.request(urlOAuth).then(function (res) {
     let url = oauth.authorizeUrl(res.body.oauth_token, 'write');
     url += '&oauth_callback='+urlOAuth;
@@ -52,7 +41,7 @@ app.get('/OAuth/request', function (req, res) {
   });
 });
 
-app.get('/OAuth/success', function (req, res) {
+router.get('/OAuth/success', function (req, res) {
   let qeuryParams = queryString.parse(req._parsedUrl.query);
   let user = {};
   oauth.verify(qeuryParams.oauth_token,qeuryParams.oauth_verifier, tempoToken["oauth_token_secret"]).then(function (res) {
@@ -73,12 +62,12 @@ let ApiFlickr;
 
 
 //GetUserInfo
-app.get(urlGetUserInfo, function (req, res) {
+router.get(urlGetUserInfo, function (req, res) {
   if(AccessData.hasOwnProperty(0)) {
     if (ApiFlickr === undefined)
       ApiFlickr = new Flickr(Flickr.OAuth.createPlugin(
-        ConsumerKeys.consumerKey,
-        ConsumerKeys.ConsumerSecret,
+        process.env.FLICKR_CONSUMER_KEY,
+        process.env.FLICKR_CONSUMER_SECRET,
         AccessData[0].oauth_token,
         AccessData[0].oauth_token_secret));
     let result = ApiFlickr.test.login().then(function (res) {
@@ -101,12 +90,12 @@ app.get(urlGetUserInfo, function (req, res) {
 
 
 //Get PhotoSets
-app.get(urlGetPhotoSets, function (req, res) {
+router.get(urlGetPhotoSets, function (req, res) {
   if(AccessData.hasOwnProperty(0)) {
     if (ApiFlickr === undefined)
       ApiFlickr = new Flickr(Flickr.OAuth.createPlugin(
-        ConsumerKeys.consumerKey,
-        ConsumerKeys.ConsumerSecret,
+        process.env.FLICKR_CONSUMER_KEY,
+        process.env.FLICKR_CONSUMER_SECRET,
         AccessData[0].oauth_token,
         AccessData[0].oauth_token_secret));
     let param = {
@@ -133,7 +122,4 @@ app.get(urlGetPhotoSets, function (req, res) {
   }
 });
 
-
-app.listen(port);
-
-console.log('Server is started is ' + 'localhost:'+port);
+module.exports = router;
