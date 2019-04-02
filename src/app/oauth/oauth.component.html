@@ -1,11 +1,13 @@
 <div class="salutation" [hidden]="userInfo === undefined">
-  <p  >Welcome {{ userInfo?.username?._content }}</p>
-  <p>Your id: {{ userInfo?.id }}</p>
+	<p>Welcome {{ userInfo?.username?._content }}</p>
+	<p>Your id: {{ userInfo?.id }}</p>
 </div>
 <p>{{ oauthData?.url || undefined }}</p>
 <div class="buttonContainer" [ngClass]="{'smart-device': Width  <= 600 }">
-  <button class="buttonCurrent" (click)="connectToFlickt()">Connect to Flickr</button>
+	<button class="buttonCurrent" (click)="connectToFlickt()">
+		Connect to Flickr
+	</button>
 </div>
 <div class="buttonContainer" [ngClass]="{'smart-device': Width  <= 600 }">
-  <button class="buttonCurrent" (click)="getUserinfo()">Get User Info</button>
+	<button class="buttonCurrent" (click)="getUserinfo()">Get User Info</button>
 </div>

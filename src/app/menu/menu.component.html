@@ -1,18 +1,53 @@
 <div [ngClass]="{'smart-device': Width <= 600}">
-  <div class="search">
-    <input type="text">
-    <img src="../../assets/img/ico/filled-cancel.png" style="display: none;">
-  </div>
-  <ul class="menu">
-    <li [ngClass]='{"highlight": route === "/images"}'><a routerLink="/images"><img src="../../assets/img/ico/img-icon.png" alt="images"></a></li>
-    <li [ngClass]='{"highlight": route === "2"}'><a href="#"><img src="../../assets/img/ico/window-icon.png" alt="images"></a></li>
-    <li [ngClass]='{"highlight": route === "/oauth"}'><a routerLink="/oauth"><img src="../../assets/img/ico/user-icon.png" alt="images"></a></li>
-    <li><a href="#"><img src="../../assets/img/ico/location-icon.png" alt="images"></a></li>
-    <li><a href="#"><img src="../../assets/img/ico/comment-icon.png" alt="images"></a></li>
-    <li><a href="#"><img src="../../assets/img/ico/display-icon.png" alt="images"></a></li>
-    <li><a href="#"><img src="../../assets/img/ico/flag-icon.png" alt="images"></a></li>
-    <li><a href="#"><img src="../../assets/img/ico/upload-icon.png" alt="images"></a></li>
-  </ul>
+	<div class="search">
+		<input type="text" />
+		<img
+			src="../../assets/img/ico/filled-cancel.png"
+			style="display: none;"
+		/>
+	</div>
+	<ul class="menu">
+		<li [ngClass]="{&quot;highlight&quot;: route === &quot;/images&quot;}">
+			<a routerLink="/images"
+				><img src="../../assets/img/ico/img-icon.png" alt="images"
+			/></a>
+		</li>
+		<li [ngClass]="{&quot;highlight&quot;: route === &quot;2&quot;}">
+			<a href="#"
+				><img src="../../assets/img/ico/window-icon.png" alt="images"
+			/></a>
+		</li>
+		<li [ngClass]="{&quot;highlight&quot;: route === &quot;/oauth&quot;}">
+			<a routerLink="/oauth"
+				><img src="../../assets/img/ico/user-icon.png" alt="images"
+			/></a>
+		</li>
+		<li>
+			<a href="#"
+				><img src="../../assets/img/ico/location-icon.png" alt="images"
+			/></a>
+		</li>
+		<li>
+			<a href="#"
+				><img src="../../assets/img/ico/comment-icon.png" alt="images"
+			/></a>
+		</li>
+		<li>
+			<a href="#"
+				><img src="../../assets/img/ico/display-icon.png" alt="images"
+			/></a>
+		</li>
+		<li>
+			<a href="#"
+				><img src="../../assets/img/ico/flag-icon.png" alt="images"
+			/></a>
+		</li>
+		<li>
+			<a href="#"
+				><img src="../../assets/img/ico/upload-icon.png" alt="images"
+			/></a>
+		</li>
+	</ul>
 </div>
 <span>Path of element: {{ route }}</span>
 <router-outlet></router-outlet>
